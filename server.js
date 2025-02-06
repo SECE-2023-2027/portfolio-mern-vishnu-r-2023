@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "public"))); // Serve static files
 const mongodb = process.env.MONGODB_URI || "mongodb+srv://vishnuramesh:Vishnu123@cluster0.oun5q.mongodb.net/Portfolio";
 
 mongoose
-  .connect(mongodb, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(mongodb)
   .then(() => {
     console.log("Connected to MongoDB successfully.");
     app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
@@ -25,6 +25,7 @@ mongoose
     console.error("Failed to connect to MongoDB:", err.message);
     process.exit(1); // Exit the process if MongoDB connection fails
   });
+
 
 // Contact schema and model
 const contactSchema = new mongoose.Schema({
