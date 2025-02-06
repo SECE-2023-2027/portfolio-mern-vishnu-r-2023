@@ -13,7 +13,7 @@ app.use(cors()); // Allow requests from any origin
 app.use(express.static(path.join(__dirname, "public"))); // Serve static files
 
 // MongoDB connection
-const mongodb = process.env.MONGODB_URI || "mongodb://localhost:27017/sample_testing";
+const mongodb = process.env.MONGODB_URI || "mongodb+srv://vishnuramesh:Vishnu123@cluster0.oun5q.mongodb.net/Portfolio";
 mongoose
   .connect(mongodb)
   .then(() => {
