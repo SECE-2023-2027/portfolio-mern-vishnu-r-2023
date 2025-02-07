@@ -13,7 +13,7 @@ document.getElementById("contact").addEventListener("submit", async (e) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email,subject, message }),
+      body: JSON.stringify({ name, email, subject, message }),
     });
 
     const result = await response.json();
@@ -33,4 +33,36 @@ document.getElementById("contact").addEventListener("submit", async (e) => {
     contactMessage.textContent = "An error occurred. Please try again later.";
     contactMessage.style.color = "red"; // Optional: change color for error
   }
+});
+
+// Masonry Initialization after all images are loaded
+window.addEventListener('load', function() {
+  // Function to load a single image
+  const loadImage = src => new Promise(resolve => {
+    const image = new Image();
+    image.onload = () => resolve();
+    image.src = src;
+  });
+
+  // Function to check if all images are loaded in the container
+  async function allImagesLoaded(selector) {
+    const container = document.querySelector(selector);
+    if (container === null) {
+      return;
+    }
+
+    const images = container.querySelectorAll('img');
+    return Promise.all([...images].map(
+      src => loadImage(src)
+    ));
+  }
+
+  // Wait for all images inside #posts .grid to load
+  allImagesLoaded('#posts .grid').then(() => {
+    // Initialize Masonry after images are loaded
+    new Masonry("#posts .grid", {
+      itemSelector : '.grid-item',
+      gutter : 20
+    });
+  });
 });
