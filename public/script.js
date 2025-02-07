@@ -1,4 +1,3 @@
-// Script to handle form submission
 document.getElementById("contact").addEventListener("submit", async (e) => {
   e.preventDefault(); // Prevent default form submission
 
@@ -21,17 +20,17 @@ document.getElementById("contact").addEventListener("submit", async (e) => {
 
     if (response.ok) { // If response is OK (status code 200-299)
       contactMessage.textContent = result.message;
-      contactMessage.style.color = "green"; // Success message color
+      contactMessage.style.color = "green"; // Optional: change color for success
       document.getElementById("contact").reset(); // Clear the form
     } else {
       contactMessage.textContent = result.message || "Failed to send your message. Please try again.";
-      contactMessage.style.color = "red"; // Failure message color
+      contactMessage.style.color = "red"; // Optional: change color for failure
     }
   } catch (error) {
     console.error("Error submitting form:", error);
     const contactMessage = document.getElementById("contactMessage");
     contactMessage.textContent = "An error occurred. Please try again later.";
-    contactMessage.style.color = "red"; // Error message color
+    contactMessage.style.color = "red"; // Optional: change color for error
   }
 });
 
