@@ -21,48 +21,35 @@ document.getElementById("contact").addEventListener("submit", async (e) => {
 
     if (response.ok) { // If response is OK (status code 200-299)
       contactMessage.textContent = result.message;
-      contactMessage.style.color = "green"; // Optional: change color for success
+      contactMessage.style.color = "green"; // Success message color
       document.getElementById("contact").reset(); // Clear the form
     } else {
       contactMessage.textContent = result.message || "Failed to send your message. Please try again.";
-      contactMessage.style.color = "red"; // Optional: change color for failure
+      contactMessage.style.color = "red"; // Failure message color
     }
   } catch (error) {
     console.error("Error submitting form:", error);
     const contactMessage = document.getElementById("contactMessage");
     contactMessage.textContent = "An error occurred. Please try again later.";
-    contactMessage.style.color = "red"; // Optional: change color for error
+    contactMessage.style.color = "red"; // Error message color
   }
 });
 
-// Masonry Initialization after all images are loaded
-window.addEventListener('load', function() {
-  // Function to load a single image
-  const loadImage = src => new Promise(resolve => {
-    const image = new Image();
-    image.onload = () => resolve();
-    image.src = src;
+// Initialize Isotope after images are loaded
+window.addEventListener("load", function () {
+  var isoGrid = document.querySelector(".isotope-box");
+  if (!isoGrid) return; // Exit if Isotope grid is not found
+
+  var iso = new Isotope(isoGrid, {
+    itemSelector: ".isotope-item",
+    layoutMode: "fitRows",
   });
 
-  // Function to check if all images are loaded in the container
-  async function allImagesLoaded(selector) {
-    const container = document.querySelector(selector);
-    if (container === null) {
-      return;
-    }
-
-    const images = container.querySelectorAll('img');
-    return Promise.all([...images].map(
-      src => loadImage(src)
-    ));
-  }
-
-  // Wait for all images inside #posts .grid to load
-  allImagesLoaded('#posts .grid').then(() => {
-    // Initialize Masonry after images are loaded
-    new Masonry("#posts .grid", {
-      itemSelector : '.grid-item',
-      gutter : 20
+  // Filter items when a filter button is clicked
+  document.querySelectorAll(".isotope-toolbar input").forEach((button) => {
+    button.addEventListener("change", function () {
+      var filterValue = this.getAttribute("data-type");
+      iso.arrange({ filter: filterValue === "*" ? "*" : '[data-type="' + filterValue + '"]' });
     });
   });
 });
