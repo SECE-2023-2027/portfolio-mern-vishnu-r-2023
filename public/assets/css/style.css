@@ -19,23 +19,26 @@ body {
     background: url(../images/page-bg.jpg) no-repeat center center;
     background-size: cover;
     width: 100%;
-    min-height: 100vh; /* Ensures it covers the full viewport */
+    min-height: 100vh; /* Ensures full viewport coverage */
 }
 
-/* ✅ Fix for iOS Devices (Prevents Blurring) */
+/* ✅ iOS-Specific Fix */
 @supports (-webkit-touch-callout: none) {
     #page-wraper {
-        background-attachment: scroll !important; /* Prevents blur issue on iOS */
-        -webkit-transform: translate3d(0, 0, 0); /* Forces GPU rendering for clarity */
+        background-attachment: scroll !important; /* Prevents blurring */
+        -webkit-transform: translate3d(0, 0, 0); /* Uses GPU for crisp rendering */
+        image-rendering: -webkit-optimize-contrast; /* Forces high-quality rendering */
+        background-size: 100% 100%; /* Helps in rendering properly */
     }
 }
 
-/* ✅ Ensure Desktop Uses Background-Fixed */
+/* ✅ Desktop Optimization */
 @media (min-width: 1025px) {
     #page-wraper {
         background-attachment: fixed;
     }
 }
+
 
 body {
     overflow-x: hidden;
