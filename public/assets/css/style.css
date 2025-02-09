@@ -14,7 +14,6 @@ body {
     background-size: cover;
     width: 100%;
 } */
-
 #page-wraper {
     background: url(../images/page-bg.jpg) no-repeat center center;
     background-size: cover;
@@ -25,10 +24,17 @@ body {
 /* ✅ iOS-Specific Fix */
 @supports (-webkit-touch-callout: none) {
     #page-wraper {
-        background-attachment: scroll !important; /* Prevents blurring */
-        -webkit-transform: translate3d(0, 0, 0); /* Uses GPU for crisp rendering */
-        image-rendering: -webkit-optimize-contrast; /* Forces high-quality rendering */
-        background-size: 100% 100%; /* Helps in rendering properly */
+        background-attachment: scroll !important; /* Prevents iOS blurring */
+        -webkit-transform: translate3d(0, 0, 0); /* Forces GPU rendering */
+        image-rendering: -webkit-optimize-contrast; /* High-quality rendering */
+        background-size: cover !important; /* Prevents shrinking */
+    }
+}
+
+/* ✅ Prevent Image Shrinking */
+@media (max-width: 768px) {
+    #page-wraper {
+        background-size: contain; /* Ensures full image is visible */
     }
 }
 
