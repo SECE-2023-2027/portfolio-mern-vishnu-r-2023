@@ -5,6 +5,7 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+/* 
 #page-wraper {
     background: url(../images/page-bg.jpg ) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -12,9 +13,29 @@ body {
     -o-background-size: cover;
     background-size: cover;
     width: 100%;
+} */
+
+#page-wraper {
+    background: url(../images/page-bg.jpg) no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh; /* Ensures it covers the full viewport */
 }
 
+/* ✅ Fix for iOS Devices (Prevents Blurring) */
+@supports (-webkit-touch-callout: none) {
+    #page-wraper {
+        background-attachment: scroll !important; /* Prevents blur issue on iOS */
+        -webkit-transform: translate3d(0, 0, 0); /* Forces GPU rendering for clarity */
+    }
+}
 
+/* ✅ Ensure Desktop Uses Background-Fixed */
+@media (min-width: 1025px) {
+    #page-wraper {
+        background-attachment: fixed;
+    }
+}
 
 body {
     overflow-x: hidden;
