@@ -5,7 +5,6 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-/* 
 #page-wraper {
     background: url(../images/page-bg.jpg ) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -13,39 +12,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
     width: 100%;
-} */
-
-#page-wraper {
-    background: url(../images/page-bg.jpg) no-repeat center center;
-    background-size: cover;
-    width: 100%;
-    min-height: 100vh;
-}
-
-/* ✅ Fix for iOS Blurriness */
-@supports (-webkit-touch-callout: none) {
-    #page-wraper {
-        background-attachment: scroll !important; /* Fixes blur */
-        -webkit-transform: translateZ(0); /* Forces GPU rendering */
-        image-rendering: crisp-edges;
-        image-rendering: -webkit-optimize-contrast;
-    }
-}
-
-/* ✅ High-Resolution Fix */
-@media (max-width: 1024px) {
-    #page-wraper {
-        background-size: contain; /* Ensures full image clarity */
-    }
-}
-
-/* ✅ Desktop Optimization */
-@media (min-width: 1025px) {
-    #page-wraper {
-        background-attachment: fixed;
-    }
-}
-
+} 
 
 body {
     overflow-x: hidden;
