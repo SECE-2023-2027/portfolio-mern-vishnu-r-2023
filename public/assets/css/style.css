@@ -14,29 +14,31 @@ body {
     background-size: cover;
     width: 100%;
 } */
+
 #page-wraper {
     background: url(../images/page-bg.jpg) no-repeat center center;
     background-size: cover;
     width: 100%;
-    min-height: 100vh; /* Ensures full viewport coverage */
+    min-height: 100vh;
 }
 
-/* ✅ iOS-Specific Fix */
+/* ✅ Fix for iOS Blurriness */
 @supports (-webkit-touch-callout: none) {
     #page-wraper {
-        background-attachment: scroll !important; /* Prevents iOS blurring */
-        -webkit-transform: translate3d(0, 0, 0); /* Forces GPU rendering */
-        image-rendering: -webkit-optimize-contrast; /* High-quality rendering */
-        background-size: cover !important; /* Prevents shrinking */
+        background-attachment: scroll !important; /* Fixes blur */
+        -webkit-transform: translateZ(0); /* Forces GPU rendering */
+        image-rendering: crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
     }
 }
 
-/* ✅ Prevent Image Shrinking */
-@media (max-width: 768px) {
+/* ✅ High-Resolution Fix */
+@media (max-width: 1024px) {
     #page-wraper {
-        background-size: contain; /* Ensures full image is visible */
+        background-size: contain; /* Ensures full image clarity */
     }
 }
+
 
 /* ✅ Desktop Optimization */
 @media (min-width: 1025px) {
